@@ -70,7 +70,7 @@ public class Exponential extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "Exponential: ";
+		return "Exponentialverteilung ";
 	}
 
 	@Override

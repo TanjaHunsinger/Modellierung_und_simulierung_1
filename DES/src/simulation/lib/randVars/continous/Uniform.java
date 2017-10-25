@@ -76,7 +76,7 @@ public class Uniform extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "Uniform: ";
+		return "Uniformverteilung ";
 	}
 
 	@Override

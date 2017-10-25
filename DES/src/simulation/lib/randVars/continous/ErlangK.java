@@ -85,7 +85,7 @@ public class ErlangK extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "k-Erlang: ";
+		return "k-Erlangverteilung ";
 	}
 
 	@Override
