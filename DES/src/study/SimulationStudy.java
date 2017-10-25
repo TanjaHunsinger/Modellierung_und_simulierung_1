@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import simulation.lib.Simulator;
+import simulation.lib.rng.StdRNG;
 import simulation.lib.statistic.IStatisticObject;
 
 /**
@@ -39,6 +40,11 @@ public class SimulationStudy {
 		 * print out report
 		 */
 		sim.report();
+		
+		
+		//Test Random numbers
+		StdRNG test1 = new StdRNG();
+		System.out.println("Random Number: " + test1.rnd());
 	}
 
 	// PARAMETERS

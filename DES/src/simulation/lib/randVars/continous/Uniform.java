@@ -38,7 +38,7 @@ public class Uniform extends RandVar {
 	@Override
 	public double getVariance() {
 		// TODO Auto-generated method stub
-		double var = (1/12)*(Math.pow(b-a));
+		double var = (1/12)*(Math.pow((b-a),2));
 		return var;
 	}
 
@@ -76,7 +76,7 @@ public class Uniform extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "Uniformverteilung ";
+		return "Uniform: ";
 	}
 
 	@Override

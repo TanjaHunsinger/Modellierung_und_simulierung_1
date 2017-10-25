@@ -64,7 +64,7 @@ public class HyperExponential extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "HyperExponentialverteilung ";
+		return "HyperExponential: ";
 	}
 
 	@Override

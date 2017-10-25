@@ -41,9 +41,10 @@ public class StdRNG extends RNG {
 		 * Create a random value: 0 < value < 1 (T)
 		 */
 		double rv = 0;
+		Random rand = new Random();
 
 		while( rv == 0 || rv == 1){
-			rv =getRandom(1);
+			rv = rand.nextDouble();
 		}
 
 		return rv;

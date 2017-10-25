@@ -39,16 +39,14 @@ public class Exponential extends RandVar {
 	@Override
 	public double getVariance() {
 		// TODO Auto-generated method stub
-		double var = 1/(Math.pow(lambda));
+		double var = 1/(Math.pow(lambda,2));
 		return var;
 	}
 
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
-		if(m > 0){
-			lambda = k/m;
-		}
+		
 	}
 
 	@Override
@@ -70,7 +68,7 @@ public class Exponential extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "Exponentialverteilung ";
+		return "Exponential: ";
 	}
 
 	@Override

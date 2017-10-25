@@ -32,7 +32,7 @@ public class ErlangK extends RandVar {
 		double X = 0;
 
 		for( int i = 0; i < k; i++){
-			X += (-1/lambda) * Math.log(rng.rng())
+			X += (-1/lambda) * Math.log(rng.rnd());
 		}
 
 		return X;
@@ -48,7 +48,7 @@ public class ErlangK extends RandVar {
 	@Override
 	public double getVariance() {
 		// TODO Auto-generated method stub
-		double var = k(Math.pow(lambda,2));
+		double var = k*(Math.pow(lambda,2));
 		return var;
 	}
 
@@ -85,7 +85,7 @@ public class ErlangK extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "k-Erlangverteilung ";
+		return "k-Erlang: ";
 	}
 
 	@Override
