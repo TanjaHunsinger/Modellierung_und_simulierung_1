@@ -36,7 +36,7 @@ public class HyperExponential extends RandVar {
 		// TODO Auto-generated method stub
 		double mean = 0;
 		
-		for( int i = 1; i <= n; i++){
+		for( int i = 0; i < n; i++){
 			mean += p/lambda;
 		}
 
@@ -49,7 +49,7 @@ public class HyperExponential extends RandVar {
 		
 		double var = 0;
 
-		for( int i = 1; i <= n; i++){
+		for( int i = 0; i < n; i++){
 			var += (2/lambda)* p; 
 		}
 

@@ -48,29 +48,25 @@ public class SimulationStudy {
 		StdRNG test1 = new StdRNG();
 		System.out.println("\n" + "Random Number: " + test1.rnd() + "\n");
 
-		//Test uniform
+		//Test uniform -> funktioniert noch nicht richtig!!
 		Uniform uni1 = new Uniform(null);
-		uni1.setMeanAndStdDeviation(2, 2);
+		uni1.setMeanAndStdDeviation(7, 7);
 		System.out.println(uni1.toString());
 
 		//Test erlang
 		ErlangK erl1 = new ErlangK(null);
-		erl1.setMean(5);
-		erl1.setVariance(5);
-		erl1.setStdDeviation(5);
+		erl1.setMeanAndCvar(1, 3);
 		System.out.println(erl1.toString());
 
 		//Test exp
 		Exponential exp = new Exponential(null);
-		exp.setMeanAndStdDeviation(2, 2);
+		exp.setMeanAndCvar(1, 3);
 		System.out.println(exp.toString());
 
 		//Test hyerexp
 		HyperExponential hyexp = new HyperExponential(null);
-		hyexp.setMeanAndStdDeviation(3, 3);
+		hyexp.setMeanAndCvar(1, 1);
 		System.out.println(hyexp.toString());
-		
-		
 
 
 
