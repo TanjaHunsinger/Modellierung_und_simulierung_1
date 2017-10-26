@@ -50,11 +50,11 @@ public class SimulationStudy {
 		
 		//Test uniform
 		Uniform uni1 = new Uniform(null);
-		uni1.setMean(1);
+		uni1.setMean(2);
 		System.out.println("uniform1: " + uni1.getMean()); //ergibt immer zahl die eingegeben wurde 
-		uni1.setVariance(1);
+		uni1.setVariance(2);
 		System.out.println("uniform-var: " + uni1.getVariance()); // ergibt immer 0
-		uni1.setStdDeviation(1);
+		uni1.setStdDeviation(2);
 		System.out.println("uniform-std-dev: " + uni1.getStdDeviation()); // ergibt immer 0
 	
 		//Test erlang

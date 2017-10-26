@@ -68,13 +68,17 @@ public class Exponential extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "Exponential: ";
+		return "Exponential";
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		return 	"Type:  " + getType() + "\n" +
+		"Mean: " + getMean() + "\n" +
+		"Cvar: " + getCvar() + "\n" +	
+		"std Deviation: " + getStdDeviation() + "\n" +
+		"Variance: " + getVariance() +"\n";
 	}
 	
 }

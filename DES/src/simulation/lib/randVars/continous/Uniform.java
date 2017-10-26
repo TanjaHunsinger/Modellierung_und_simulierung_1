@@ -79,13 +79,17 @@ public class Uniform extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "Uniform: ";
+		return "Uniform";
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		return 	"Type:  " + getType() + "\n" +
+		"Mean: " + getMean() + "\n" +
+		"Cvar: " + getCvar() + "\n" +	
+		"std Deviation: " + getStdDeviation() + "\n" +
+		"Variance: " + getVariance() +"\n";
 	}
 	
 }
