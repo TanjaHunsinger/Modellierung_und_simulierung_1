@@ -55,7 +55,20 @@ public class SimulationStudy {
 		uni1.setVariance(1);
 		System.out.println("uniform-var: " + uni1.getVariance()); // ergibt immer 0
 		uni1.setStdDeviation(1);
-		System.out.println("uniform-mean-cvar: " + uni1.getStdDeviation()); // ergibt immer 0
+		System.out.println("uniform-std-dev: " + uni1.getStdDeviation()); // ergibt immer 0
+	
+		//Test erlang
+		ErlangK erl1 = new ErlangK(null);
+		erl1.setMean(1);
+		System.out.println("ErlangK-mean: " + erl1.getMean()); //ergibt immer zahl die eingegeben wurde 
+		erl1.setVariance(1);
+		System.out.println("ErlangK-var: " + erl1.getVariance()); 
+		erl1.setStdDeviation(1);
+		System.out.println("ErlangK-std-dev: " + erl1.getStdDeviation()); 
+
+	
+	
+	
 	}
 
 	// PARAMETERS
