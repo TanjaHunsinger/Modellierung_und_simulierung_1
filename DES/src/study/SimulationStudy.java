@@ -9,6 +9,8 @@ import simulation.lib.Simulator;
 import simulation.lib.rng.StdRNG;
 import simulation.lib.statistic.IStatisticObject;
 
+import simulation.lib.randVars.continous.*;
+
 /**
  * Represents a simulation study. Contains diverse counters for statistics and
  * program/simulator parameters. Starts the simulation.
@@ -45,6 +47,15 @@ public class SimulationStudy {
 		//Test Random numbers
 		StdRNG test1 = new StdRNG();
 		System.out.println("Random Number: " + test1.rnd());
+		
+		//Test uniform
+		Uniform uni1 = new Uniform(null);
+		uni1.setMean(1);
+		System.out.println("uniform1: " + uni1.getMean()); //ergibt immer zahl die eingegeben wurde 
+		uni1.setVariance(1);
+		System.out.println("uniform-var: " + uni1.getVariance()); // ergibt immer 0
+		uni1.setStdDeviation(1);
+		System.out.println("uniform-mean-cvar: " + uni1.getStdDeviation()); // ergibt immer 0
 	}
 
 	// PARAMETERS

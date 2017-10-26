@@ -18,7 +18,7 @@ public class Uniform extends RandVar {
 	public Uniform(RNG rng) {
 		super(rng);
 		// TODO Auto-generated constructor stub
-		a = 1;
+		a = 0;
 		b = 1;
 	}
 
@@ -45,6 +45,9 @@ public class Uniform extends RandVar {
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
+		double diff = m - getMean();
+		a = a + diff;
+		b = b + diff;
 
 	}
 
