@@ -46,12 +46,11 @@ public class SimulationStudy {
 
 		//Test Random numbers
 		StdRNG test1 = new StdRNG();
-		System.out.println("Random Number: " + test1.rnd());
+		System.out.println("\n" + "Random Number: " + test1.rnd() + "\n");
 
 		//Test uniform
 		Uniform uni1 = new Uniform(null);
-		uni1.setMean(5);
-		uni1.setVariance(5);
+		uni1.setMeanAndStdDeviation(5, 5);
 		uni1.setStdDeviation(5);
 		System.out.println(uni1.toString());
 
@@ -64,13 +63,11 @@ public class SimulationStudy {
 
 		//Test exp
 		Exponential exp = new Exponential(null);
-		exp.setMean(2);
 		exp.setMeanAndStdDeviation(2, 2);
 		System.out.println(exp.toString());
 
 		//Test hyerexp
 		HyperExponential hyexp = new HyperExponential(null);
-		hyexp.setMean(2);
 		hyexp.setMeanAndStdDeviation(2, 2);
 		System.out.println(hyexp.toString());
 
