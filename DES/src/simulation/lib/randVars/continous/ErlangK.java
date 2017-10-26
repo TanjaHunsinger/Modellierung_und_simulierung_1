@@ -55,22 +55,14 @@ public class ErlangK extends RandVar {
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
-		lambda = k/m;
+		this.lambda = m;
 
 	}
 
 	@Override
 	public void setStdDeviation(double s) {
 		// TODO Auto-generated method stub
-		/*
-		 Formel nach s umstellen:
-		 s = Wurzel(k/lambda^2)
-		 S = Wurzel(k)/lambda
-		 lambda = Wurzel(k)/s
-		  */
-		if (s > 0 ){
-			lambda = Math.sqrt(k)/s;
-		}
+		this.lambda = s;
 
 	}
 
@@ -91,7 +83,7 @@ public class ErlangK extends RandVar {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return 	"Type:  " + getType() + "\n" +
+		return 	"Type: " + getType() + "\n" +
 		"Mean: " + getMean() + "\n" +
 		"Cvar: " + getCvar() + "\n" +	
 		"std Deviation: " + getStdDeviation() + "\n" +

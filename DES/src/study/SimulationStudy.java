@@ -51,24 +51,21 @@ public class SimulationStudy {
 		//Test uniform
 		Uniform uni1 = new Uniform(null);
 		uni1.setMean(2);
-		System.out.println("uniform1: " + uni1.getMean()); //ergibt immer zahl die eingegeben wurde 
 		uni1.setVariance(2);
-		System.out.println("uniform-var: " + uni1.getVariance()); // ergibt immer 0
 		uni1.setStdDeviation(2);
-		System.out.println("uniform-std-dev: " + uni1.getStdDeviation()); // ergibt immer 0
-	
+		System.out.println(uni1.toString());
+		
 		//Test erlang
 		ErlangK erl1 = new ErlangK(null);
-		erl1.setMean(1);
-		erl1.setVariance(1);
-		erl1.setStdDeviation(1);
+		erl1.setMean(5);
+		erl1.setVariance(5);
+		erl1.setStdDeviation(5);
 		System.out.println(erl1.toString());
 		
 		//Test exp
 		Exponential exp = new Exponential(null);
-		exp.setMean(1);
-		exp.setVariance(1);
-		exp.setStdDeviation(1);
+		exp.setMean(2);
+		exp.setMeanAndStdDeviation(2, 2);
 		System.out.println(exp.toString());
 
 

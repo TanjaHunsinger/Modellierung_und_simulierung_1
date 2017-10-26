@@ -46,15 +46,13 @@ public class Exponential extends RandVar {
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
-		
+		this.lambda = m;
 	}
 
 	@Override
 	public void setStdDeviation(double s) {
 		// TODO Auto-generated method stub
-		if(s > 0) {
-			lambda = 1/s;
-		}
+		this.lambda = s;
 
 	}
 
@@ -74,7 +72,7 @@ public class Exponential extends RandVar {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return 	"Type:  " + getType() + "\n" +
+		return 	"Type: " + getType() + "\n" +
 		"Mean: " + getMean() + "\n" +
 		"Cvar: " + getCvar() + "\n" +	
 		"std Deviation: " + getStdDeviation() + "\n" +

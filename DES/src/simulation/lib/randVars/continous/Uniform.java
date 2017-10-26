@@ -85,7 +85,7 @@ public class Uniform extends RandVar {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return 	"Type:  " + getType() + "\n" +
+		return 	"Type: " + getType() + "\n" +
 		"Mean: " + getMean() + "\n" +
 		"Cvar: " + getCvar() + "\n" +	
 		"std Deviation: " + getStdDeviation() + "\n" +
