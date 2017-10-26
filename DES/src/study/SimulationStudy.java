@@ -16,7 +16,7 @@ import simulation.lib.randVars.continous.*;
  * program/simulator parameters. Starts the simulation.
  */
 public class SimulationStudy {
-    /*
+	/*
 	 * TODO Problem 2.2.4 - configure program arguments here
 	 * Here you can set the different parameters for your simulation
 	 * Note: Units are real time units (seconds).
@@ -42,36 +42,41 @@ public class SimulationStudy {
 		 * print out report
 		 */
 		sim.report();
-		
-		
+
+
 		//Test Random numbers
 		StdRNG test1 = new StdRNG();
 		System.out.println("Random Number: " + test1.rnd());
-		
+
 		//Test uniform
 		Uniform uni1 = new Uniform(null);
-		uni1.setMean(2);
-		uni1.setVariance(2);
-		uni1.setStdDeviation(2);
+		uni1.setMean(5);
+		uni1.setVariance(5);
+		uni1.setStdDeviation(5);
 		System.out.println(uni1.toString());
-		
+
 		//Test erlang
 		ErlangK erl1 = new ErlangK(null);
 		erl1.setMean(5);
 		erl1.setVariance(5);
 		erl1.setStdDeviation(5);
 		System.out.println(erl1.toString());
-		
+
 		//Test exp
 		Exponential exp = new Exponential(null);
 		exp.setMean(2);
 		exp.setMeanAndStdDeviation(2, 2);
 		System.out.println(exp.toString());
 
+		//Test hyerexp
+		HyperExponential hyexp = new HyperExponential(null);
+		hyexp.setMean(2);
+		hyexp.setMeanAndStdDeviation(2, 2);
+		System.out.println(hyexp.toString());
 
-	
-	
-	
+
+
+
 	}
 
 	// PARAMETERS
@@ -158,41 +163,41 @@ public class SimulationStudy {
 
 		statisticObjects = new HashMap<>();
 
-        /*
+		/*
           TODO Problem 2.2 - add statistic objects (counters) to the HashMap
           Here you have to create your counters and add them to the statisticObjects HashMap
           Use the name which you specified above as the key
-         */
-        // Example: statisticObjects.put(dcWaitingTime, new DiscreteCounter("waiting time/customer"));
+		 */
+		// Example: statisticObjects.put(dcWaitingTime, new DiscreteCounter("waiting time/customer"));
 	}
 
 
-    /**
-     * Report results. Print to console if isDebugReport = true. Print to csv
-     * files if isCsvReport = true. Note: Histogramms are only printed to csv
-     * files.
-     */
-    public void report() {
-        String sd = new SimpleDateFormat("yyyyMMdd_HHmmss_").format(new Date(System.currentTimeMillis()));
-        String destination = sd + this.getClass().getSimpleName();
+	/**
+	 * Report results. Print to console if isDebugReport = true. Print to csv
+	 * files if isCsvReport = true. Note: Histogramms are only printed to csv
+	 * files.
+	 */
+	public void report() {
+		String sd = new SimpleDateFormat("yyyyMMdd_HHmmss_").format(new Date(System.currentTimeMillis()));
+		String destination = sd + this.getClass().getSimpleName();
 
-        if (isCsvReport) {
-            File file = new File(destination);
-            file.mkdir();
-            for (IStatisticObject so : statisticObjects.values()) {
-                so.csvReport(destination);
-            }
-        }
-        if (isDebugReport) {
-            System.out.println("E[interArrivalTime] = " + simulator.simTimeToRealTime(interArrivalTime) + "\n"
-                    + "E[serviceTime] = " + simulator.simTimeToRealTime(serviceTime) + "\n"
-                    + "server utilization: "+ ((double) serviceTime / (double) interArrivalTime) + "\n");
+		if (isCsvReport) {
+			File file = new File(destination);
+			file.mkdir();
+			for (IStatisticObject so : statisticObjects.values()) {
+				so.csvReport(destination);
+			}
+		}
+		if (isDebugReport) {
+			System.out.println("E[interArrivalTime] = " + simulator.simTimeToRealTime(interArrivalTime) + "\n"
+					+ "E[serviceTime] = " + simulator.simTimeToRealTime(serviceTime) + "\n"
+					+ "server utilization: "+ ((double) serviceTime / (double) interArrivalTime) + "\n");
 
-            for (IStatisticObject so : statisticObjects.values()) {
-                System.out.println(so.report());
-            }
+			for (IStatisticObject so : statisticObjects.values()) {
+				System.out.println(so.report());
+			}
 
-            System.out.println("minimum queue size: " + minQS + "\n" + "maximum queue size: " + maxQS);
-        }
-    }
+			System.out.println("minimum queue size: " + minQS + "\n" + "maximum queue size: " + maxQS);
+		}
+	}
 }

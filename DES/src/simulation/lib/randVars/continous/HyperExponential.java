@@ -44,12 +44,14 @@ public class HyperExponential extends RandVar {
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
-
+		this.lambda = m;
+		
 	}
 
 	@Override
 	public void setStdDeviation(double s) {
 		// TODO Auto-generated method stub
+		this.lambda = s;
 
 	}
 
