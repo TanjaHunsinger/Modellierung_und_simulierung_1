@@ -50,8 +50,7 @@ public class SimulationStudy {
 
 		//Test uniform
 		Uniform uni1 = new Uniform(null);
-		uni1.setMeanAndStdDeviation(5, 5);
-		uni1.setStdDeviation(5);
+		uni1.setMeanAndStdDeviation(2, 2);
 		System.out.println(uni1.toString());
 
 		//Test erlang
@@ -68,8 +67,10 @@ public class SimulationStudy {
 
 		//Test hyerexp
 		HyperExponential hyexp = new HyperExponential(null);
-		hyexp.setMeanAndStdDeviation(2, 2);
+		hyexp.setMeanAndStdDeviation(3, 3);
 		System.out.println(hyexp.toString());
+		
+		
 
 
 

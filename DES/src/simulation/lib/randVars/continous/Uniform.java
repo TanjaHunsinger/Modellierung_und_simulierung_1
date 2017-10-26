@@ -45,27 +45,19 @@ public class Uniform extends RandVar {
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
-		double diff = m - getMean();
-		a = a + diff;
-		b = b + diff;
+		//double diff = m - getMean();
+		//a = a + diff;
+		//b = b + diff;
+		this.a = m;
+		this.b = 0;
 
 	}
 
 	@Override
 	public void setStdDeviation(double s) {
 		// TODO Auto-generated method stub
-		/*
-		Formel umstellen :
-		s = Wurzel((b-a)^2 /12)
-		s = (b-a)/Wurzel(12)
-		s = b/Wurzel(12) - a/Wurzel(12)
-
-		b/Wurzel(12) = a/Wurzel(12) + s
-		b = a + s* Wurzel(12) = a + 2* s* Wurzel(3)
-		a = b - s* Wurzel(12) = b - 2* s* Wurzel(3)
-		 */
-		a = b - ( 2 * s * Math.sqrt(3));
-		b = a + ( 2 * s * Math.sqrt(3));
+		this.a = s;
+		this.b = 0;
 	}
 
 	@Override

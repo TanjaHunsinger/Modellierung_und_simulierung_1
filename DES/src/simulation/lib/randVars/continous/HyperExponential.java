@@ -13,13 +13,15 @@ import static java.lang.Math.*;
  */
 public class HyperExponential extends RandVar {
 
-	protected double k;
+	protected double p;
 	protected double lambda;
+	protected double n;
 
 	public HyperExponential(RNG rng) {
 		super(rng);
 		// TODO Auto-generated constructor stub
-		k = 1;
+		p = 1;
+		n = 1;
 		lambda = 1;
 	}
 
@@ -32,20 +34,33 @@ public class HyperExponential extends RandVar {
 	@Override
 	public double getMean() {
 		// TODO Auto-generated method stub
-		return 0;
+		double mean = 0;
+		
+		for( int i = 1; i <= n; i++){
+			mean += p/lambda;
+		}
+
+		return mean;
 	}
 
 	@Override
 	public double getVariance() {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		double var = 0;
+
+		for( int i = 1; i <= n; i++){
+			var += (2/lambda)* p; 
+		}
+
+		return var;
 	}
 
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
 		this.lambda = m;
-		
+				
 	}
 
 	@Override
