@@ -65,6 +65,16 @@ public class SimulationStudy {
 		System.out.println("ErlangK-var: " + erl1.getVariance()); 
 		erl1.setStdDeviation(1);
 		System.out.println("ErlangK-std-dev: " + erl1.getStdDeviation()); 
+		
+		//Test exp
+		ErlangK exp = new ErlangK(null);
+		exp.setMean(2);
+		System.out.println("exp-mean: " + exp.getMean()); //ergibt immer zahl die eingegeben wurde 
+		exp.setVariance(2);
+		System.out.println("exp-var: " + exp.getVariance()); 
+		exp.setStdDeviation(2);
+		System.out.println("exp-std-dev: " + exp.getStdDeviation()); 
+
 
 	
 	
