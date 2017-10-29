@@ -6,14 +6,17 @@ import java.util.Date;
 import java.util.HashMap;
 
 import simulation.lib.Simulator;
+import simulation.lib.rng.StdRNG;
 import simulation.lib.statistic.IStatisticObject;
+
+import simulation.lib.randVars.continous.*;
 
 /**
  * Represents a simulation study. Contains diverse counters for statistics and
  * program/simulator parameters. Starts the simulation.
  */
 public class SimulationStudy {
-    /*
+	/*
 	 * TODO Problem 2.2.4 - configure program arguments here
 	 * Here you can set the different parameters for your simulation
 	 * Note: Units are real time units (seconds).
@@ -39,6 +42,15 @@ public class SimulationStudy {
 		 * print out report
 		 */
 		sim.report();
+
+
+		//Aufruf Problem 2.3
+		System.out.println("\n" + " =========== Results Problem 2.3 ===========" + " \n");
+		RandVarTest randVar = new RandVarTest();
+		randVar.testRandVars();
+
+
+
 	}
 
 	// PARAMETERS
@@ -125,41 +137,41 @@ public class SimulationStudy {
 
 		statisticObjects = new HashMap<>();
 
-        /*
+		/*
           TODO Problem 2.2 - add statistic objects (counters) to the HashMap
           Here you have to create your counters and add them to the statisticObjects HashMap
           Use the name which you specified above as the key
-         */
-        // Example: statisticObjects.put(dcWaitingTime, new DiscreteCounter("waiting time/customer"));
+		 */
+		// Example: statisticObjects.put(dcWaitingTime, new DiscreteCounter("waiting time/customer"));
 	}
 
 
-    /**
-     * Report results. Print to console if isDebugReport = true. Print to csv
-     * files if isCsvReport = true. Note: Histogramms are only printed to csv
-     * files.
-     */
-    public void report() {
-        String sd = new SimpleDateFormat("yyyyMMdd_HHmmss_").format(new Date(System.currentTimeMillis()));
-        String destination = sd + this.getClass().getSimpleName();
+	/**
+	 * Report results. Print to console if isDebugReport = true. Print to csv
+	 * files if isCsvReport = true. Note: Histogramms are only printed to csv
+	 * files.
+	 */
+	public void report() {
+		String sd = new SimpleDateFormat("yyyyMMdd_HHmmss_").format(new Date(System.currentTimeMillis()));
+		String destination = sd + this.getClass().getSimpleName();
 
-        if (isCsvReport) {
-            File file = new File(destination);
-            file.mkdir();
-            for (IStatisticObject so : statisticObjects.values()) {
-                so.csvReport(destination);
-            }
-        }
-        if (isDebugReport) {
-            System.out.println("E[interArrivalTime] = " + simulator.simTimeToRealTime(interArrivalTime) + "\n"
-                    + "E[serviceTime] = " + simulator.simTimeToRealTime(serviceTime) + "\n"
-                    + "server utilization: "+ ((double) serviceTime / (double) interArrivalTime) + "\n");
+		if (isCsvReport) {
+			File file = new File(destination);
+			file.mkdir();
+			for (IStatisticObject so : statisticObjects.values()) {
+				so.csvReport(destination);
+			}
+		}
+		if (isDebugReport) {
+			System.out.println("E[interArrivalTime] = " + simulator.simTimeToRealTime(interArrivalTime) + "\n"
+					+ "E[serviceTime] = " + simulator.simTimeToRealTime(serviceTime) + "\n"
+					+ "server utilization: "+ ((double) serviceTime / (double) interArrivalTime) + "\n");
 
-            for (IStatisticObject so : statisticObjects.values()) {
-                System.out.println(so.report());
-            }
+			for (IStatisticObject so : statisticObjects.values()) {
+				System.out.println(so.report());
+			}
 
-            System.out.println("minimum queue size: " + minQS + "\n" + "maximum queue size: " + maxQS);
-        }
-    }
+			System.out.println("minimum queue size: " + minQS + "\n" + "maximum queue size: " + maxQS);
+		}
+	}
 }

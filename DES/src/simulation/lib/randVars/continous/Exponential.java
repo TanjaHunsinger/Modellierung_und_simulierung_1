@@ -26,7 +26,7 @@ public class Exponential extends RandVar {
 	@Override
 	public double getRV() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -39,24 +39,20 @@ public class Exponential extends RandVar {
 	@Override
 	public double getVariance() {
 		// TODO Auto-generated method stub
-		double var = 1/(Math.pow(lambda));
+		double var = 1/(Math.pow(lambda,2));
 		return var;
 	}
 
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
-		if(m > 0){
-			lambda = k/m;
-		}
+		this.lambda = m;
 	}
 
 	@Override
 	public void setStdDeviation(double s) {
 		// TODO Auto-generated method stub
-		if(s > 0) {
-			lambda = 1/s;
-		}
+		this.lambda = s;
 
 	}
 
@@ -70,13 +66,17 @@ public class Exponential extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "Exponential: ";
+		return "Exponential";
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		return 	"Type: " + getType() + "\n" +
+		"Mean: " + getMean() + "\n" +
+		"Cvar: " + getCvar() + "\n" +	
+		"std Deviation: " + getStdDeviation() + "\n" +
+		"Variance: " + getVariance() +"\n";
 	}
 	
 }
