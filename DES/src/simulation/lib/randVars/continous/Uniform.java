@@ -19,13 +19,13 @@ public class Uniform extends RandVar {
 		super(rng);
 		// TODO Auto-generated constructor stub
 		a = 1;
-		b = 1;
+		b = 0;
 	}
 
 	@Override
 	public double getRV() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -38,31 +38,24 @@ public class Uniform extends RandVar {
 	@Override
 	public double getVariance() {
 		// TODO Auto-generated method stub
-		double var = (1/12)*(Math.pow(b-a));
+		double temp = Math.abs(b - a);
+		double var = (Math.pow(temp,2))/12;
 		return var;
 	}
 
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
+		this.a = m;
+		this.b = 0;
 
 	}
 
 	@Override
 	public void setStdDeviation(double s) {
 		// TODO Auto-generated method stub
-		/*
-		Formel umstellen :
-		s = Wurzel((b-a)^2 /12)
-		s = (b-a)/Wurzel(12)
-		s = b/Wurzel(12) - a/Wurzel(12)
-
-		b/Wurzel(12) = a/Wurzel(12) + s
-		b = a + s* Wurzel(12) = a + 2* s* Wurzel(3)
-		a = b - s* Wurzel(12) = b - 2* s* Wurzel(3)
-		 */
-		a = b - ( 2 * s * Math.sqrt(3));
-		b = a + ( 2 * s * Math.sqrt(3));
+		this.a = s;
+		this.b = 0;
 	}
 
 	@Override
@@ -76,13 +69,17 @@ public class Uniform extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "Uniform: ";
+		return "Uniform";
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		return 	"Type: " + getType() + "\n" +
+		"Mean: " + getMean() + "\n" +
+		"Cvar: " + getCvar() + "\n" +	
+		"std Deviation: " + getStdDeviation() + "\n" +
+		"Variance: " + getVariance() +"\n";
 	}
 	
 }

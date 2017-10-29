@@ -13,43 +13,60 @@ import static java.lang.Math.*;
  */
 public class HyperExponential extends RandVar {
 
-	protected double k;
+	protected double p;
 	protected double lambda;
+	protected double n;
 
 	public HyperExponential(RNG rng) {
 		super(rng);
 		// TODO Auto-generated constructor stub
-		k = 1;
+		p = 1;
+		n = 1;
 		lambda = 1;
 	}
 
 	@Override
 	public double getRV() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public double getMean() {
 		// TODO Auto-generated method stub
-		return 0;
+		double mean = 0;
+		
+		for( int i = 0; i < n; i++){
+			mean += p/lambda;
+		}
+
+		return mean;
 	}
 
 	@Override
 	public double getVariance() {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		double var = 0;
+
+		for( int i = 0; i < n; i++){
+			var += (2/lambda)* p; 
+		}
+
+		return var;
 	}
 
 	@Override
 	public void setMean(double m) {
 		// TODO Auto-generated method stub
-
+		this.lambda = m;
+				
 	}
 
 	@Override
 	public void setStdDeviation(double s) {
 		// TODO Auto-generated method stub
+		this.lambda = s;
 
 	}
 
@@ -64,12 +81,16 @@ public class HyperExponential extends RandVar {
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return "HyperExponential: ";
+		return "HyperExponential";
 	}
 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return null;
+		return 	"Type: " + getType() + "\n" +
+		"Mean: " + getMean() + "\n" +
+		"Cvar: " + getCvar() + "\n" +	
+		"std Deviation: " + getStdDeviation() + "\n" +
+		"Variance: " + getVariance() +"\n";
 	}
 }
