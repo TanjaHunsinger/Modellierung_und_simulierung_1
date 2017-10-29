@@ -44,30 +44,10 @@ public class SimulationStudy {
 		sim.report();
 
 
-		//Test Random numbers
-		StdRNG test1 = new StdRNG();
-		System.out.println("\n" + "Random Number: " + test1.rnd() + "\n");
-
-		//Test uniform -> funktioniert noch nicht richtig!!
-		Uniform uni1 = new Uniform(null);
-		uni1.setMeanAndStdDeviation(7, 7);
-		System.out.println(uni1.toString());
-
-		//Test erlang
-		ErlangK erl1 = new ErlangK(null);
-		erl1.setMeanAndCvar(1, 3);
-		System.out.println(erl1.toString());
-
-		//Test exp
-		Exponential exp = new Exponential(null);
-		exp.setMeanAndCvar(1, 3);
-		System.out.println(exp.toString());
-
-		//Test hyerexp
-		HyperExponential hyexp = new HyperExponential(null);
-		hyexp.setMeanAndCvar(1, 1);
-		System.out.println(hyexp.toString());
-
+		//Aufruf Problem 2.3
+		System.out.println("\n" + " =========== Results Problem 2.3 ===========" + " \n");
+		RandVarTest randVar = new RandVarTest();
+		randVar.testRandVars();
 
 
 

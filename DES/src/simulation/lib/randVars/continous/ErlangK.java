@@ -12,7 +12,7 @@ import simulation.lib.rng.RNG;
  */
 public class ErlangK extends RandVar {
 
-	protected double k;       //k exponentiell verteilte Phasen
+	protected double k;       
 	protected double lambda;
 
 	public ErlangK(RNG rng) {

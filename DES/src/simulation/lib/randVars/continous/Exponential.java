@@ -26,7 +26,7 @@ public class Exponential extends RandVar {
 	@Override
 	public double getRV() {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
