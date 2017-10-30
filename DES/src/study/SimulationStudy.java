@@ -22,6 +22,11 @@ public class SimulationStudy {
 	 * Note: Units are real time units (seconds).
 	 * They get converted to simulation time units in setSimulationParameters.
 	 */
+	
+	
+	
+	
+	
 	protected long cInterArrivalTime = 10;
 	protected long cServiceTime = 11;
 	protected long cSimulationTime = 10000;

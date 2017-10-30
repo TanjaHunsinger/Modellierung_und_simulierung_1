@@ -178,6 +178,7 @@ public class Simulator implements IEventObserver{
          * You can retrieve your statistic objects from the SimulationStudy by using the name Strings
          * e.g. IStatisticObject statObj = this.sims.statisticObjects.get(this.sims.dcWaitingTime)
          */
+        
 
 	}
 
