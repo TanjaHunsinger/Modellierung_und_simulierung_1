@@ -72,7 +72,16 @@ public abstract class Histogram implements IStatisticObject{
          * and smaller than the lower bound (return the number of the lowest bin -> 0).
          * This way, the histogram is open-ended on both sides
 		 */
+		
+		// noch fehlerhaft
 		int binNumber = 0;
+		if( x >= getUpperBound()) {
+			binNumber = (int)bins[(int)upperBound]; 
+		}
+		else if (x < getLowerBound()) {
+			binNumber = 0;
+		}
+		
 		return binNumber;
 	}
 
@@ -87,6 +96,7 @@ public abstract class Histogram implements IStatisticObject{
          * Implement this function!
          * Hint: Take a look at the javadoc comment of this method
          */
+		bins[binNumber] += x;
 	}
 
 

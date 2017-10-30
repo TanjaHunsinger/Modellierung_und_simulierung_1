@@ -32,6 +32,8 @@ public class ContinuousCounter extends Counter {
 		 * Hint: See course syllabus 1.5.3.2
 		 */
 		double mean = 0.0;
+		mean = (getSumPowerOne()/(lastSampleTime - firstSampleTime));
+		
 		return mean;
 	}
 	
@@ -46,6 +48,8 @@ public class ContinuousCounter extends Counter {
 		 * Hint: See course syllabus 1.5.3.2 and 1.4.1 ff.
 		 */
 		double variance = 0.0;
+		variance = (getSumPowerTwo()/(lastSampleTime - firstSampleTime));
+		
 		return variance;
 	}
 
@@ -62,6 +66,11 @@ public class ContinuousCounter extends Counter {
 		 * Also update lastSampleSize and lastSampleTime
 		 * Hint: See course syllabus 1.5.3.2
 		 */
+		this.lastSampleSize = x;
+		this.lastSampleTime = sim.getSimTime();
+		
+		this.sumPowerOne += x;
+		this.sumPowerTwo += Math.pow(x,2);
 	}
 
 	/**

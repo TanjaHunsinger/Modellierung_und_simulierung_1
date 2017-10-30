@@ -28,6 +28,9 @@ public class DiscreteHistogram extends Histogram {
 		 * Also update numSamples
 		 * Hint: See course syllabus 1.5.2
 		 */
+		if( x >= getLowerBound() && x <= getUpperBound()) {
+			incrementBin(getBinNumber(x), 1);
+		}
 	}
 	
 	/**
