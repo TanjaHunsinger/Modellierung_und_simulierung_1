@@ -45,7 +45,7 @@ public class SimulationStudy {
 
 
 		//Aufruf Problem 2.3
-		System.out.println("\n" + " =========== Results Problem 2.3 ===========" + " \n");
+		System.out.println("\n" + "=========== Results Problem 2.3 ===========" + " \n");
 		RandVarTest randVar = new RandVarTest();
 		randVar.testRandVars();
 

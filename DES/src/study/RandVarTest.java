@@ -13,11 +13,7 @@ public class RandVarTest {
     public static void testRandVars() {
         // TODO Auto-generated method stub
     	   	
-    	//Test Random numbers
-    			StdRNG test1 = new StdRNG();
-    			//System.out.println("\n" + "Random Number: " + test1.rnd() + "\n");
-
-    			//Test uniform -> funktioniert noch nicht richtig!!
+    			//Test uniform 
     			Uniform uni1 = new Uniform(null);
     			uni1.setMeanAndStdDeviation(1, 0.1);
     			System.out.println("Input: setMean = 1, setCvar = 0.1" + "\n" + uni1.toString());
