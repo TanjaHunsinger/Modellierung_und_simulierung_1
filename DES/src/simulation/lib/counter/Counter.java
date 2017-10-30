@@ -71,7 +71,7 @@ public abstract class Counter implements IStatisticObject{
 		 * You can use other methods of this class in order to calculate the standard deviation
 		 * Hint: See course syllabus 1.3.4
 		 */
-		double sdev = 0.0;
+		double sdev = Math.sqrt(getVariance());
 		return sdev;
 	}
 
