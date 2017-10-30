@@ -33,6 +33,10 @@ public class DiscreteCounter extends Counter {
 		 * Hint: See course syllabus 1.4.1 ff.
 		 */
 		double mean = 0.0;
+		if (getNumSamples() != 0) {
+			mean = getSumPowerOne() / getNumSamples();
+		}
+		
 		return mean;
 	}
 	
@@ -47,9 +51,7 @@ public class DiscreteCounter extends Counter {
 		 * Hint: See course syllabus 1.4.1 ff.
 		 */
 		double variance = 0.0;
-		for(int i = 0; i < getNumSamples(); i++) {
-			variance +=  Math.pow(getMean() - getSumPowerOne(),2);
-		}
+		variance = (getNumSamples()/(getNumSamples()-1)) * ((sumPowerTwo/getNumSamples()) - Math.pow((sumPowerOne/getNumSamples()), 2) );
 		
 		return variance;
 	}
@@ -65,5 +67,7 @@ public class DiscreteCounter extends Counter {
 		 * Implement this function!
 		 * Hint: See course syllabus 1.5.1
 		 */
+		increaseSumPowerOne(x);
+		increaseSumPowerTwo(x);
 	}
 }
