@@ -31,7 +31,7 @@ public class ContinuousCounter extends Counter {
 		 * Implement this function!
 		 * Hint: See course syllabus 1.5.3.2
 		 */
-		double mean = 0.0;
+		double mean = 0;
 		return mean;
 	}
 	
