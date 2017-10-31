@@ -187,9 +187,10 @@ public class Simulator implements IEventObserver{
 				sims.maxQS = state.queueSize;
 			}
 			else {
-				IStatisticObject statObj =	this.sims.statisticObjects.get(this.sims.simulationTime);
-			}
+				this.sims.statisticObjects.get(this.sims.simulationTime);
 		}
+		}
+		
 	}
 
 	/**
@@ -209,7 +210,9 @@ public class Simulator implements IEventObserver{
 			 * and its waiting time (getTimeInQueue())
 			 */
 			
-
+			//this.sims.statisticObjects.get(this.sims.interArrivalTime).count(currentCustomer.getTimeInQueue());
+	         //sims.statisticObjects.get(sims.simulationTime).count(currentCustomer.getTimeInService());
+			sims.statisticObjects.get(currentCustomer).count(currentCustomer.getTimeInService());
 		}
 
 		/*
