@@ -209,10 +209,13 @@ public class Simulator implements IEventObserver{
 			 * Use your respective counter and histogram to count the service time of the currentCustomer (getTimeInService())
 			 * and its waiting time (getTimeInQueue())
 			 */
-			
-			//this.sims.statisticObjects.get(this.sims.interArrivalTime).count(currentCustomer.getTimeInQueue());
-	         //sims.statisticObjects.get(sims.simulationTime).count(currentCustomer.getTimeInService());
-			sims.statisticObjects.get(currentCustomer).count(currentCustomer.getTimeInService());
+
+//           sims.statisticObjects.get(sims.serviceTime).count(currentCustomer.getTimeInService());
+//            sims.statisticObjects.get(sims.dcWaitingTime).count(currentCustomer.getTimeInQueue());
+//            
+//            sims.statisticObjects.get(sims.histDcServiceTime).count(currentCustomer.getTimeInService());
+//            sims.statisticObjects.get(sims.histDcWaitingTime).count(currentCustomer.getTimeInQueue());
+
 		}
 
 		/*
@@ -220,7 +223,11 @@ public class Simulator implements IEventObserver{
 		 * Update the server utilization in your corresponding counter and histogram
 		 * Therefore, check if the server is busy (state.serverBusy flag)
 		 */
-		
+		if(state.serverBusy) {
+		}
+		else {
+			
+		}
 
 	}
 

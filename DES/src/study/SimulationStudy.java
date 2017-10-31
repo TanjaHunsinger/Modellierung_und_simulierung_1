@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 import simulation.lib.Simulator;
+import simulation.lib.counter.DiscreteCounter;
+import simulation.lib.histogram.DiscreteHistogram;
 import simulation.lib.rng.StdRNG;
 import simulation.lib.statistic.IStatisticObject;
 
@@ -23,13 +25,9 @@ public class SimulationStudy {
 	 * They get converted to simulation time units in setSimulationParameters.
 	 */
 	
-	
-	
-	
-	
 	protected long cInterArrivalTime = 10;
-	protected long cServiceTime = 11;
-	protected long cSimulationTime = 10000;
+	protected long cServiceTime 	 = 11;
+	protected long cSimulationTime 	 = 10000;
 
 	/**
 	 * Main method
@@ -108,7 +106,18 @@ public class SimulationStudy {
 	 * They are later used to retrieve them from the dictionary
 	 */
 	// Example for discrete counter which measures customer waiting time:
-	// public String dcWaitingTime = "discreteCounterWaitingTime";
+	public String dcWaitingTime 	= "discreteCounterWaitingTime";
+	public String histDcWaitingTime = "discreteHistorgrammWaitingTime";
+	
+	public String dcServiceTime 	= "discreteCounterServiceTime";
+	public String histDcServiceTime = "discreteHistogramServiceTime";
+
+	public String cnQueueOcc 		= "continuousCounterQueueOccupancy";
+	public String histCnQueueOcc 	= "continuousHistogramQueueOccupancy";
+
+	public String cnServerUtil 		= "continuousCountServerUtilization";
+	public String histCnServerUtil  = "continuousHistogramServerUtilization";
+
 
 	private Simulator simulator;
 
@@ -129,8 +138,8 @@ public class SimulationStudy {
 	 */
 	private void setSimulationParameters() {
 		interArrivalTime = simulator.realTimeToSimTime(cInterArrivalTime);
-		serviceTime = simulator.realTimeToSimTime(cServiceTime);
-		simulationTime = simulator.realTimeToSimTime(cSimulationTime);
+		serviceTime 	 = simulator.realTimeToSimTime(cServiceTime);
+		simulationTime 	 = simulator.realTimeToSimTime(cSimulationTime);
 	}
 
 	/**
@@ -139,7 +148,19 @@ public class SimulationStudy {
 	private void initStatistics() {
 		maxQS = Long.MIN_VALUE;
 		minQS = Long.MAX_VALUE;
+		
+		int lowerBoundDc   = 0;
+		int upperBoundDc   = 20000;
+		int lowerBoundOcc  = 0;
+		int upperBoundOcc  = 200;
+		int lowerBoundUtil = 0;
+		int upperBoundUtil = 200;
 
+		int numIntervalDcWaiting  = 100;
+		int numIntervalDcService  = 50;
+		int numIntervalOccupation = 25;
+		int numIntervalsUtil 	  = 10;
+		
 		statisticObjects = new HashMap<>();
 
 		/*
@@ -147,7 +168,18 @@ public class SimulationStudy {
           Here you have to create your counters and add them to the statisticObjects HashMap
           Use the name which you specified above as the key
 		 */
-		// Example: statisticObjects.put(dcWaitingTime, new DiscreteCounter("waiting time/customer"));
+		
+		statisticObjects.put(dcWaitingTime, new DiscreteCounter("waiting time/customer"));
+		statisticObjects.put(histDcWaitingTime, new DiscreteHistogram("waiting_time-customer", numIntervalDcWaiting , lowerBoundDc, upperBoundDc));
+
+		statisticObjects.put(dcServiceTime, new DiscreteCounter("service_time/customer"));
+		statisticObjects.put(histDcServiceTime, new DiscreteHistogram("service_time-customer", numIntervalDcService, lowerBoundDc, upperBoundDc));
+
+		statisticObjects.put(cnQueueOcc, new DiscreteCounter("occupency/queue_discrete"));
+		statisticObjects.put(histCnQueueOcc, new DiscreteHistogram("occupeny/queue_continuous", numIntervalOccupation, lowerBoundOcc, upperBoundOcc));
+
+		statisticObjects.put(cnServerUtil, new DiscreteCounter("utilization/server_discrete"));
+		statisticObjects.put(histCnServerUtil, new DiscreteHistogram("utilization/server_continuous", numIntervalsUtil, lowerBoundUtil, upperBoundUtil));
 	}
 
 
