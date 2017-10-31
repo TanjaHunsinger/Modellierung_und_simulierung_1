@@ -208,8 +208,7 @@ public class Simulator implements IEventObserver{
 			 * Use your respective counter and histogram to count the service time of the currentCustomer (getTimeInService())
 			 * and its waiting time (getTimeInQueue())
 			 */
-			IStatisticObject statObj = this.sims.statisticObjects.get(this.sims.simulationTime);
-        	
+			
 
 		}
 
@@ -218,7 +217,7 @@ public class Simulator implements IEventObserver{
 		 * Update the server utilization in your corresponding counter and histogram
 		 * Therefore, check if the server is busy (state.serverBusy flag)
 		 */
-		        
+		
 
 	}
 
@@ -238,6 +237,7 @@ public class Simulator implements IEventObserver{
 		 * TODO Problem 2.2.3 - update queue occupancy here
 		 * Count the queue size with your respective statistic objects
 		 */
+		
 
 	}
 
