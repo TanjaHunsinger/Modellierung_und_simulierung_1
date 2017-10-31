@@ -210,11 +210,11 @@ public class Simulator implements IEventObserver{
 			 * and its waiting time (getTimeInQueue())
 			 */
 
-//           sims.statisticObjects.get(sims.serviceTime).count(currentCustomer.getTimeInService());
-//            sims.statisticObjects.get(sims.dcWaitingTime).count(currentCustomer.getTimeInQueue());
-//            
-//            sims.statisticObjects.get(sims.histDcServiceTime).count(currentCustomer.getTimeInService());
-//            sims.statisticObjects.get(sims.histDcWaitingTime).count(currentCustomer.getTimeInQueue());
+			sims.statisticObjects.get(sims.dcServiceTime).count(currentCustomer.getTimeInService());
+			sims.statisticObjects.get(sims.dcWaitingTime).count(currentCustomer.getTimeInQueue());
+
+			sims.statisticObjects.get(sims.histDcServiceTime).count(currentCustomer.getTimeInService());
+			sims.statisticObjects.get(sims.histDcWaitingTime).count(currentCustomer.getTimeInQueue());
 
 		}
 
@@ -224,6 +224,7 @@ public class Simulator implements IEventObserver{
 		 * Therefore, check if the server is busy (state.serverBusy flag)
 		 */
 		if(state.serverBusy) {
+			updateQueueSize();
 		}
 		else {
 			
@@ -247,7 +248,8 @@ public class Simulator implements IEventObserver{
 		 * TODO Problem 2.2.3 - update queue occupancy here
 		 * Count the queue size with your respective statistic objects
 		 */
-		
+		sims.statisticObjects.get(sims.cnQueueOcc).count(state.queueSize);
+        sims.statisticObjects.get(sims.histCnQueueOcc).count(state.queueSize);
 
 	}
 

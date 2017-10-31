@@ -150,7 +150,7 @@ public class SimulationStudy {
 		minQS = Long.MAX_VALUE;
 		
 		int lowerBoundDc   = 0;
-		int upperBoundDc   = 20000;
+		int upperBoundDc   = 20000000;
 		int lowerBoundOcc  = 0;
 		int upperBoundOcc  = 200;
 		int lowerBoundUtil = 0;
