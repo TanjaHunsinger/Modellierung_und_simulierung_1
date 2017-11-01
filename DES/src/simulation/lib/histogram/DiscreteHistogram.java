@@ -30,6 +30,7 @@ public class DiscreteHistogram extends Histogram {
 		 */
 		if( x >= getLowerBound() && x <= getUpperBound()) {
 			incrementBin(getBinNumber(x), 1);
+			numSamples++;
 		}
 	}
 	

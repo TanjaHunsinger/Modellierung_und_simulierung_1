@@ -73,14 +73,15 @@ public abstract class Histogram implements IStatisticObject{
          * This way, the histogram is open-ended on both sides
 		 */
 		
-		// noch fehlerhaft
 		int binNumber = 0;
 		if( x >= getUpperBound()) {
-			binNumber = (int)bins[(int)upperBound]; 
+			binNumber = bins.length-1; 
 		}
-		else if (x < getLowerBound()) {
+		else if (x <= getLowerBound()) {
 			binNumber = 0;
 		}
+		else
+			binNumber = (int)((Math.abs(x-getLowerBound())/delta));
 		
 		return binNumber;
 	}

@@ -6,6 +6,7 @@ import simulation.lib.event.Event;
 import simulation.lib.event.IEventObserver;
 import simulation.lib.event.ServiceCompletionEvent;
 import simulation.lib.event.SimulationTerminationEvent;
+import simulation.lib.statistic.IStatisticObject;
 import study.SimulationState;
 import study.SimulationStudy;
 
@@ -17,17 +18,17 @@ public class Simulator implements IEventObserver{
 	private long now;
 	private SortableQueue ec;
 	private boolean stop;
-	
+
 	/**
 	 * Contains simulator statistics and parameters
 	 */
 	private SimulationStudy sims;
-	
+
 	/**
 	 * Contains simulator state.
 	 */
 	private SimulationState state;
-	
+
 	/**
 	 * Constructor 
 	 * Create event chain (ec), SimulationStudy- and SimulationState- objects
@@ -43,7 +44,7 @@ public class Simulator implements IEventObserver{
 		// push the termination event at the simulationTime (max duration of simulation)
 		pushNewEvent(new SimulationTerminationEvent(sims.simulationTime));
 	}
-	
+
 	/**
 	 * Sets the number of ticks in simulation time per unit in real time
 	 * @param simTimeInRealTime number of ticks per unit in real time
@@ -51,7 +52,7 @@ public class Simulator implements IEventObserver{
 	public void setSimTimeInRealTime(long simTimeInRealTime) {
 		this.simTimeInRealTime = simTimeInRealTime;
 	}
-	
+
 	/**
 	 * Converts real time to sim time
 	 * @param realTime units in real time
@@ -64,7 +65,7 @@ public class Simulator implements IEventObserver{
 			throw new NumberFormatException("simulation time out of range: " + tmp + " > " + Long.MAX_VALUE);
 		return (long) Math.ceil(tmp);
 	}
-	
+
 	/**
 	 * Converts sim time to real time
 	 * @param simTime units in sim time
@@ -73,7 +74,7 @@ public class Simulator implements IEventObserver{
 	public double simTimeToRealTime(long simTime) {
 		return (double) simTime / simTimeInRealTime;
 	}
-	
+
 	/**
 	 * Starts the simulation
 	 * @throws Exception is thrown when event order is invalid
@@ -85,12 +86,12 @@ public class Simulator implements IEventObserver{
 				//check if event time is in the past
 				if(e.getTime() < now) {
 					throw new RuntimeException("Event time " + e.getTime()
-							+ " smaller than current time " + now);
+					+ " smaller than current time " + now);
 				}
 
 				//set event time as new simtime
 				now = e.getTime();
-				
+
 				//register for notification
 				e.register(this);
 
@@ -105,7 +106,7 @@ public class Simulator implements IEventObserver{
 			}
 		}
 	}
-	
+
 	/**
 	 * Pushes a new event into the event chain at the correct place
 	 * @param e the new event
@@ -113,7 +114,7 @@ public class Simulator implements IEventObserver{
 	private void pushNewEvent(Event e) {
 		ec.pushNewElement(e);
 	}
-	
+
 	/**
 	 * Stops the simulator
 	 */
@@ -121,22 +122,22 @@ public class Simulator implements IEventObserver{
 		stop = true;
 	}
 
-    /**
-     * Starts the simulation.
-     */
+	/**
+	 * Starts the simulation.
+	 */
 	public void start() {
 		stop = false;
 		run();
 	}
-	
+
 	/**
 	 * Returns the current sim time
 	 * @return current sim time
 	 */
 	public long getSimTime() {
-	    return now;
+		return now;
 	}
-	
+
 	/**
 	 * Resets the simulator
 	 */
@@ -145,14 +146,14 @@ public class Simulator implements IEventObserver{
 		stop = false;
 		ec.clear();
 	}
-	
+
 	/**
 	 * Reports results.
 	 */
 	public void report() {
-	    sims.report();
+		sims.report();
 	}
-	
+
 
 	/**
 	 * Handles update statistics event from IObservableEvent objects.
@@ -164,21 +165,32 @@ public class Simulator implements IEventObserver{
 			updateStatsSCE((Customer) arg);
 		}
 	}
-	
+
 	/**
 	 * Update statistics, fired from customer arrival event
 	 */
 	private void updateStatsCAE(){
-        updateQueueSize();
+		updateQueueSize();
 
-        /*
-         * TODO Problem 2.2.3 - customer arrival event: update server utilization here
-         * Update the server utilization in your corresponding counter and histogram
-         * Therefore, check if the server is busy (state.serverBusy flag)
-         * You can retrieve your statistic objects from the SimulationStudy by using the name Strings
-         * e.g. IStatisticObject statObj = this.sims.statisticObjects.get(this.sims.dcWaitingTime)
-         */
-
+		/*
+		 * TODO Problem 2.2.3 - customer arrival event: update server utilization here
+		 * Update the server utilization in your corresponding counter and histogram
+		 * Therefore, check if the server is busy (state.serverBusy flag)
+		 * You can retrieve your statistic objects from the SimulationStudy by using the name Strings
+		 * e.g. IStatisticObject statObj = this.sims.statisticObjects.get(this.sims.dcWaitingTime)
+		 */
+		if(state.serverBusy == true) {
+			if (state.queueSize < sims.minQS) {
+				sims.minQS = state.queueSize;
+			}
+			else if (state.queueSize > sims.maxQS) {
+				sims.maxQS = state.queueSize;
+			}
+			else {
+				this.sims.statisticObjects.get(this.sims.simulationTime);
+		}
+		}
+		
 	}
 
 	/**
@@ -186,54 +198,70 @@ public class Simulator implements IEventObserver{
 	 * @param currentCustomer current customer
 	 */
 	private void updateStatsSCE(Customer currentCustomer){
-        updateQueueSize();
-        if (currentCustomer != null) {
+		updateQueueSize();
+		if (currentCustomer != null) {
 
-            // update customer service end time
-            currentCustomer.serviceEndTime = getSimTime();
+			// update customer service end time
+			currentCustomer.serviceEndTime = getSimTime();
 
-            /*
-             * TODO Problem 2.2.2 - update waiting and service time measurement objects here
-             * Use your respective counter and histogram to count the service time of the currentCustomer (getTimeInService())
-             * and its waiting time (getTimeInQueue())
-             */
+			/*
+			 * TODO Problem 2.2.2 - update waiting and service time measurement objects here
+			 * Use your respective counter and histogram to count the service time of the currentCustomer (getTimeInService())
+			 * and its waiting time (getTimeInQueue())
+			 */
 
-        }
+			sims.statisticObjects.get(sims.dcServiceTime).count(currentCustomer.getTimeInService());
+			sims.statisticObjects.get(sims.dcWaitingTime).count(currentCustomer.getTimeInQueue());
 
-        /*
-         * TODO Problem 2.2.3 - service completion event: update server utilization here
-         * Update the server utilization in your corresponding counter and histogram
-         * Therefore, check if the server is busy (state.serverBusy flag)
-         */
+			sims.statisticObjects.get(sims.histDcServiceTime).count(currentCustomer.getTimeInService());
+			sims.statisticObjects.get(sims.histDcWaitingTime).count(currentCustomer.getTimeInQueue());
+
+		}
+
+		/*
+		 * TODO Problem 2.2.3 - service completion event: update server utilization here
+		 * Update the server utilization in your corresponding counter and histogram
+		 * Therefore, check if the server is busy (state.serverBusy flag)
+		 */
+		if(state.serverBusy) {
+			updateQueueSize();
+		}
+		else {
+			
+		}
+
 	}
 
-    /**
-     * Updates the queue size variable in the simulation state
-     */
-    private void updateQueueSize() {
-        sims.minQS = state.queueSize < sims.minQS ? state.queueSize : sims.minQS;
-        sims.maxQS = state.queueSize > sims.maxQS ? state.queueSize : sims.maxQS;
-    }
-	
+	/**
+	 * Updates the queue size variable in the simulation state
+	 */
+	private void updateQueueSize() {
+		sims.minQS = state.queueSize < sims.minQS ? state.queueSize : sims.minQS;
+		sims.maxQS = state.queueSize > sims.maxQS ? state.queueSize : sims.maxQS;
+	}
+
 	/**
 	 * @see IEventObserver#updateQueueOccupancyHandler(Object sender)
 	 */
 	public void updateQueueOccupancyHandler(Object sender) {
-        /*
-         * TODO Problem 2.2.3 - update queue occupancy here
-         * Count the queue size with your respective statistic objects
-         */
+		/*
+		 * TODO Problem 2.2.3 - update queue occupancy here
+		 * Count the queue size with your respective statistic objects
+		 */
+		sims.statisticObjects.get(sims.cnQueueOcc).count(state.queueSize);
+        sims.statisticObjects.get(sims.histCnQueueOcc).count(state.queueSize);
+
 	}
 
 	/**
 	 * @see IEventObserver#pushNewEventHandler(Class<?>)
 	 */
 	public void pushNewEventHandler(Class<?> c) {
-        if (c== CustomerArrivalEvent.class) {
-            pushNewEvent(new CustomerArrivalEvent(state, this.getSimTime() + sims.interArrivalTime));
-        }else if(c== ServiceCompletionEvent.class){
-            pushNewEvent(new ServiceCompletionEvent(state, this.getSimTime() + sims.serviceTime));
-        }
+		if (c== CustomerArrivalEvent.class) {
+			pushNewEvent(new CustomerArrivalEvent(state, this.getSimTime() + sims.interArrivalTime));
+		}else if(c== ServiceCompletionEvent.class){
+			pushNewEvent(new ServiceCompletionEvent(state, this.getSimTime() + sims.serviceTime));
+		}
 	}
 
 	/**
